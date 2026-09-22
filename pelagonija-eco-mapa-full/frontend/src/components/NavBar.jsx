@@ -5,7 +5,7 @@ const LINKS = [
   { label: "Сите пријави", href: "#map-section", testid: "nav-link-reports" },
   { label: "Локални проблеми", href: "#issues-marquee", testid: "nav-link-issues" },
   { label: "Како да пријавите", href: "#how-to-report", testid: "nav-link-how" },
-  { label: "Помош & ФАК", href: "#faq-section", testid: "nav-link-faq" },
+  { label: "Помош & FAQ", href: "#faq-section", testid: "nav-link-faq" },
 ];
 
 export const scrollToId = (href) => {
