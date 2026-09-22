@@ -8,6 +8,7 @@ export const LocationCard = () => {
   const [address, setAddress] = useState("");
   const [coords, setCoords] = useState(null);
   const [locating, setLocating] = useState(false);
+  const [geocoding, setGeocoding] = useState(false);
 
   const useMyLocation = () => {
     if (!navigator.geolocation) {
@@ -30,11 +31,50 @@ export const LocationCard = () => {
     );
   };
 
-  const openMap = () => {
-    const url = coords
-      ? `https://www.google.com/maps?q=${coords.lat},${coords.lng}`
-      : MAP_EDIT_URL;
-    window.open(url, "_blank", "noopener,noreferrer");
+  const geocodeAddress = async (query) => {
+    const searchQuery = `${query}, Пелагониски Регион, Северна Македонија`;
+    const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=mk&q=${encodeURIComponent(
+      searchQuery
+    )}`;
+    const res = await fetch(url, {
+      headers: { Accept: "application/json" },
+    });
+    if (!res.ok) throw new Error("Geocoding request failed");
+    const results = await res.json();
+    if (!results.length) return null;
+    return {
+      lat: parseFloat(results[0].lat).toFixed(5),
+      lng: parseFloat(results[0].lon).toFixed(5),
+    };
+  };
+
+  const openMap = async () => {
+    // Priority 1: GPS location already found
+    if (coords) {
+      window.open(`${MAP_EDIT_URL}&ll=${coords.lat},${coords.lng}&z=17`, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    // Priority 2: typed street address — geocode it
+    if (address.trim()) {
+      setGeocoding(true);
+      try {
+        const found = await geocodeAddress(address.trim());
+        setGeocoding(false);
+        if (found) {
+          window.open(`${MAP_EDIT_URL}&ll=${found.lat},${found.lng}&z=17`, "_blank", "noopener,noreferrer");
+          return;
+        }
+        toast.error("Не можевме да ја пронајдеме оваа адреса. Проверете го текстот или користете GPS.");
+      } catch {
+        setGeocoding(false);
+        toast.error("Грешка при пребарување на адресата. Обидете се повторно.");
+      }
+      return;
+    }
+
+    // Priority 3: nothing entered — just open the base map
+    window.open(MAP_EDIT_URL, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -72,9 +112,11 @@ export const LocationCard = () => {
         <button
           data-testid="btn-open-google-maps"
           onClick={openMap}
-          className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#10B981] px-5 py-3.5 text-sm font-bold text-[#0A0D0C] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#34D399] hover:shadow-[0_10px_35px_rgba(16,185,129,0.35)]"
+          disabled={geocoding}
+          className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#10B981] px-5 py-3.5 text-sm font-bold text-[#0A0D0C] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#34D399] hover:shadow-[0_10px_35px_rgba(16,185,129,0.35)] disabled:opacity-60"
         >
-          Отвори ја Еко Мапата <ExternalLink className="h-4 w-4" />
+          {geocoding ? "Се пребарува..." : "Отвори ја Еко Мапата"}
+          {!geocoding && <ExternalLink className="h-4 w-4" />}
         </button>
         <button
           data-testid="btn-use-my-location"
