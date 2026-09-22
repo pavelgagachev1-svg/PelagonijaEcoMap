@@ -31,7 +31,7 @@ export const Footer = () => (
         <p className="font-mono2 text-[10px] uppercase tracking-[0.3em] text-[#10B981]">
           Контакт
         </p>
-        
+        <a
           href={GMAIL_COMPOSE_URL}
           target="_blank"
           rel="noopener noreferrer"
