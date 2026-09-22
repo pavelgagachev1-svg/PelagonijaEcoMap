@@ -13,7 +13,7 @@ export const TopBanner = () => (
       </p>
       <p className="flex shrink-0 items-center gap-2 font-mono2 text-[10px] uppercase tracking-[0.2em] text-[#10B981]">
         <Sprout className="h-3.5 w-3.5" />
-        Digital Spark · Метаморфозис · CIVICUS · TechSoup · Global Voices
+        Digital Spark · Metamorphosis · CIVICUS · TechSoup · Global Voices
       </p>
     </div>
   </div>
