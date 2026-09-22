@@ -32,7 +32,7 @@ export const MapSection = () => (
         {REGIONS.map((r) => (
           <span
             key={r}
-            className="flex items-center gap-1.5 rounded-full border border-[#22332B] bg-[#121816] px-3.5 py-1.5 text-xs font-semibold text-[#9EB5A9] transition-colors duration-300 hover:border-[#10B981]/50 hover:text-[#10B981]"
+            className="flex items-center gap-1.5 rounded-full border border-[#22332B] bg-[#121816] px-3.5 py-1.5 text-xs font-semibold text-[#9EB5A9]"
           >
             <MapPin className="h-3 w-3 text-[#10B981]" /> {r}
           </span>
