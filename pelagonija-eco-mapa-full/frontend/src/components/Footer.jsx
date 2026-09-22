@@ -1,5 +1,5 @@
 import { MapPin, Mail } from "lucide-react";
-import { CONTACT_EMAIL, GMAIL_COMPOSE_URL } from "@/constants";
+import { CONTACT_EMAIL, GMAIL_COMPOSE_URL, ECTER_WEBSITE_URL } from "@/constants";
 
 export const Footer = () => (
   <footer
