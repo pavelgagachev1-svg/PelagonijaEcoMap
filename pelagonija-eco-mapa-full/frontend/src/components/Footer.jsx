@@ -31,13 +31,21 @@ export const Footer = () => (
         <p className="font-mono2 text-[10px] uppercase tracking-[0.3em] text-[#10B981]">
           Контакт
         </p>
-        <a
+        
           href={GMAIL_COMPOSE_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 text-sm font-semibold text-[#E6F4EE] transition-colors hover:text-[#10B981]"
         >
           <Mail className="h-4 w-4 text-[#10B981]" /> {CONTACT_EMAIL}
+        </a>
+        
+          href={ECTER_WEBSITE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm font-semibold text-[#E6F4EE] transition-colors hover:text-[#10B981]"
+        >
+          www.ecter.org
         </a>
         <p className="mt-4 text-xs text-[#9EB5A9]">
           Создадено од <span className="font-bold text-[#E6F4EE]">ЕКТЕР Битола</span>
