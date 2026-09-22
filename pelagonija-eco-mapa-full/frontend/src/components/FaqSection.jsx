@@ -85,7 +85,7 @@ export const FaqSection = () => (
           <p className="mb-5 text-sm text-[#9EB5A9]">
             За прашања, предлози или соработка — пишете ни директно.
           </p>
-          
+          <a
             data-testid="contact-email-link"
             href={GMAIL_COMPOSE_URL}
             target="_blank"
