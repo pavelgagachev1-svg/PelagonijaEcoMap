@@ -32,21 +32,32 @@ export const LocationCard = () => {
   };
 
   const geocodeAddress = async (query) => {
-    const searchQuery = `${query}, Пелагониски Регион, Северна Македонија`;
+  const attempts = [
+    `${query}, Северна Македонија`,
+    `${query}, Macedonia`,
+    query, // last resort: exactly what the user typed
+  ];
+
+  for (const attempt of attempts) {
     const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=mk&q=${encodeURIComponent(
-      searchQuery
+      attempt
     )}`;
-    const res = await fetch(url, {
-      headers: { Accept: "application/json" },
-    });
-    if (!res.ok) throw new Error("Geocoding request failed");
-    const results = await res.json();
-    if (!results.length) return null;
-    return {
-      lat: parseFloat(results[0].lat).toFixed(5),
-      lng: parseFloat(results[0].lon).toFixed(5),
-    };
-  };
+    try {
+      const res = await fetch(url, { headers: { Accept: "application/json" } });
+      if (!res.ok) continue;
+      const results = await res.json();
+      if (results.length) {
+        return {
+          lat: parseFloat(results[0].lat).toFixed(5),
+          lng: parseFloat(results[0].lon).toFixed(5),
+        };
+      }
+    } catch {
+      // try next fallback
+    }
+  }
+  return null;
+};
 
   const openMap = async () => {
     // Priority 1: GPS location already found
