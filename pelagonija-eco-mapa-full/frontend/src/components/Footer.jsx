@@ -1,5 +1,5 @@
 import { MapPin, Mail } from "lucide-react";
-import { CONTACT_EMAIL } from "@/constants";
+import { CONTACT_EMAIL, GMAIL_COMPOSE_URL } from "@/constants";
 
 export const Footer = () => (
   <footer
@@ -31,8 +31,10 @@ export const Footer = () => (
         <p className="font-mono2 text-[10px] uppercase tracking-[0.3em] text-[#10B981]">
           Контакт
         </p>
-        <a
-          href={`mailto:${CONTACT_EMAIL}`}
+        
+          href={GMAIL_COMPOSE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex items-center gap-2 text-sm font-semibold text-[#E6F4EE] transition-colors hover:text-[#10B981]"
         >
           <Mail className="h-4 w-4 text-[#10B981]" /> {CONTACT_EMAIL}
