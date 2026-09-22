@@ -1,6 +1,6 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Mail } from "lucide-react";
-import { CONTACT_EMAIL } from "@/constants";
+import { CONTACT_EMAIL, GMAIL_COMPOSE_URL } from "@/constants";
 import { Reveal, SectionHeading } from "@/components/Reveal";
 
 const CITIZEN_FAQ = [
@@ -85,9 +85,11 @@ export const FaqSection = () => (
           <p className="mb-5 text-sm text-[#9EB5A9]">
             За прашања, предлози или соработка — пишете ни директно.
           </p>
-          <a
+          
             data-testid="contact-email-link"
-            href={`mailto:${CONTACT_EMAIL}`}
+            href={GMAIL_COMPOSE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-[#10B981] px-6 py-3 text-sm font-bold text-[#0A0D0C] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#34D399] hover:shadow-[0_10px_35px_rgba(16,185,129,0.35)]"
           >
             <Mail className="h-4 w-4" /> {CONTACT_EMAIL}
