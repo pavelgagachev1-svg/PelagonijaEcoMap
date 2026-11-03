@@ -1,6 +1,13 @@
 import { MapPin, Mail } from "lucide-react";
 import { CONTACT_EMAIL, GMAIL_COMPOSE_URL, ECTER_WEBSITE_URL } from "@/constants";
 
+const SPONSORS = [
+  { name: "Metamorphosis Foundation for Internet and Society", src: "/logos/metamorphosis.png", cls: "h-8 sm:h-9" },
+  { name: "CIVICUS", src: "/logos/civicus.png", cls: "h-14 sm:h-16" },
+  { name: "Digital Activism Program", src: "/logos/digital-activism.png", cls: "h-12 sm:h-14" },
+  { name: "TechSoup", src: "/logos/techsoup.png", cls: "h-8 sm:h-9" },
+];
+
 export const Footer = () => (
   <footer
     data-testid="footer-grants-info"
@@ -43,6 +50,25 @@ export const Footer = () => (
         <p className="font-mono2 text-[10px] uppercase tracking-[0.2em] text-[#9EB5A9]/60">
           © 2026 Пелагонија Еко Мапа
         </p>
+      </div>
+    </div>
+    <div
+      data-testid="footer-sponsor-logos"
+      className="mx-auto mt-12 max-w-7xl border-t border-[#22332B] pt-10"
+    >
+      <p className="mb-5 text-center font-mono2 text-[10px] uppercase tracking-[0.3em] text-[#10B981]">
+        Поддржано од
+      </p>
+      <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 rounded-2xl bg-white px-6 py-7 md:gap-x-14 md:px-10">
+        {SPONSORS.map((s) => (
+          <img
+            key={s.name}
+            src={s.src}
+            alt={s.name}
+            loading="lazy"
+            className={`${s.cls} w-auto max-w-[70%] object-contain`}
+          />
+        ))}
       </div>
     </div>
   </footer>
