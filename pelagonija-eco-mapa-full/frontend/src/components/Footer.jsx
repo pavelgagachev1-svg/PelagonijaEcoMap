@@ -2,10 +2,10 @@ import { MapPin, Mail } from "lucide-react";
 import { CONTACT_EMAIL, GMAIL_COMPOSE_URL, ECTER_WEBSITE_URL } from "@/constants";
 
 const SPONSORS = [
-  { name: "Metamorphosis Foundation for Internet and Society", src: "/logos/metamorphosis.png", cls: "h-8 sm:h-9" },
-  { name: "CIVICUS", src: "/logos/civicus.png", cls: "h-14 sm:h-16" },
-  { name: "Digital Activism Program", src: "/logos/digital-activism.png", cls: "h-12 sm:h-14" },
-  { name: "TechSoup", src: "/logos/techsoup.png", cls: "h-8 sm:h-9" },
+  { name: "Metamorphosis Foundation for Internet and Society", src: "/logos/metamorphosis.png", cls: "h-6 sm:h-7" },
+  { name: "CIVICUS", src: "/logos/civicus.png", cls: "h-10 sm:h-12" },
+  { name: "Digital Activism Program", src: "/logos/digital-activism.png", cls: "h-9 sm:h-11" },
+  { name: "TechSoup", src: "/logos/techsoup.png", cls: "h-6 sm:h-7" },
 ];
 
 export const Footer = () => (
@@ -59,7 +59,7 @@ export const Footer = () => (
       <p className="mb-5 text-center font-mono2 text-[10px] uppercase tracking-[0.3em] text-[#10B981]">
         Поддржано од
       </p>
-      <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 rounded-2xl bg-white px-6 py-7 md:gap-x-14 md:px-10">
+      <div className="mx-auto flex w-fit max-w-full flex-wrap items-center justify-center gap-x-8 gap-y-4 rounded-xl bg-[#E6F4EE] px-6 py-4 md:gap-x-12 md:px-8">
         {SPONSORS.map((s) => (
           <img
             key={s.name}
