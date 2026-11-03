@@ -26,19 +26,35 @@ export const NavBar = () => {
       className="sticky top-0 z-50 border-b border-[#22332B] bg-[#0A0D0C]/90 backdrop-blur-xl"
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
-        <a
-          href="#top"
-          onClick={(e) => go(e, "#top")}
-          data-testid="nav-logo"
-          className="group flex items-center gap-3"
-        >
-          <span className="flex h-9 w-9 items-center justify-center rounded-md bg-[#10B981] text-[#0A0D0C] transition-transform duration-300 group-hover:rotate-12">
-            <MapPin className="h-5 w-5" strokeWidth={2.5} />
-          </span>
-          <span className="font-display text-sm font-bold uppercase tracking-wide text-[#E6F4EE] sm:text-base">
-            Пелагонија <span className="text-[#10B981]">Еко Мапа</span>
-          </span>
-        </a>
+        <div className="flex min-w-0 items-center gap-3 sm:gap-5">
+          {/* Digital Democracy Initiative logo (top left) */}
+          <div
+            data-testid="nav-ddi-logo"
+            className="flex shrink-0 items-center rounded-md bg-white px-2.5 py-1.5"
+          >
+            <img
+              src="/logos/ddi-logo.png"
+              alt="Digital Democracy Initiative"
+              className="h-7 w-auto sm:h-9"
+            />
+          </div>
+
+          <span className="hidden h-8 w-px bg-[#22332B] sm:block" aria-hidden="true" />
+
+          <a
+            href="#top"
+            onClick={(e) => go(e, "#top")}
+            data-testid="nav-logo"
+            className="group hidden items-center gap-3 sm:flex"
+          >
+            <span className="flex h-9 w-9 items-center justify-center rounded-md bg-[#10B981] text-[#0A0D0C] transition-transform duration-300 group-hover:rotate-12">
+              <MapPin className="h-5 w-5" strokeWidth={2.5} />
+            </span>
+            <span className="font-display text-sm font-bold uppercase tracking-wide text-[#E6F4EE] sm:text-base">
+              Пелагонија <span className="text-[#10B981]">Еко Мапа</span>
+            </span>
+          </a>
+        </div>
 
         <nav className="hidden items-center gap-8 lg:flex">
           {LINKS.map((l) => (
